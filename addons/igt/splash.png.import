@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjxksdlvncl8i"
-path="res://.godot/imported/godette_icon_large.png-534a2381f1042255d40dd7982e0041b9.ctex"
+uid="uid://b3mu3o8v03t2n"
+path="res://.godot/imported/splash.png-b631144b60d7f7ca0f56857aa3428571.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/igt/godette_icon_large.png"
-dest_files=["res://.godot/imported/godette_icon_large.png-534a2381f1042255d40dd7982e0041b9.ctex"]
+source_file="res://addons/igt/splash.png"
+dest_files=["res://.godot/imported/splash.png-b631144b60d7f7ca0f56857aa3428571.ctex"]
 
 [params]
 
