@@ -18,7 +18,7 @@ Install the godot engine and create a new empty Godot project.
 The official Godot documentation has an excellent [page on installing plugins](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/installing_plugins.html).
 Download the latest version of this tutorials addon as a zipfile [here](https://github.com/bgie/igt/archive/refs/heads/main.zip)
 Open the folder where your new project is located. You can use the file explorer in the editor and right-click on any file to 'Open in File Manager'.
-Unzip the addon folder from the zipfile into the root of your project, so that you get an 'addons' folder containing the 'igt' folder.
+Unzip the 'addons' folder from the zipfile into the root of your project, so that you get an 'addons' folder containing the 'igt' folder.
 
 Activate the addon by clicking on 'Project' in the main menu, then 'Project Settings'. Go to the 'Plugins' tab and enable the checkbox to the right of 'Interactive Godot Tutorial'.
 
