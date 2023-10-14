@@ -7,7 +7,7 @@ var main
 
 func _enter_tree():
 	main = main_scene.instantiate()
-	get_editor_interface().get_editor_main_screen().add_child(main)
+	EditorInterface.get_editor_main_screen().add_child(main)
 	_make_visible(false)
 
 func _exit_tree():
@@ -29,4 +29,4 @@ func _get_plugin_name():
 
 
 func _get_plugin_icon():
-	return preload("res://addons/igt/godette_icon.png") #get_editor_interface().get_base_control().get_theme_icon("Node", "EditorIcons")
+	return preload("res://addons/igt/godette_icon.png")

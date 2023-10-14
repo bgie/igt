@@ -67,7 +67,11 @@ text = "Start tutorial"
 layout_mode = 0
 offset_right = 108.0
 offset_bottom = 31.0
-color = Color(0.141176, 0.588235, 0.462745, 0)
+
+[node name="HighlightNodeTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
 
 [connection signal="item_activated" from="MainMenu/VBox/Tree" to="." method="_on_tree_item_activated"]
 [connection signal="pressed" from="MainMenu/VBox/CenterContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="HighlightNodeTimer" to="." method="_on_highlight_node_timer_timeout"]

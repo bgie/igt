@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d21jtv5ub5t5e"]
+[gd_scene load_steps=12 format=3 uid="uid://d21jtv5ub5t5e"]
 
 [ext_resource type="Script" path="res://addons/igt/topics/common/TalkingGodette.gd" id="1_a1fab"]
 [ext_resource type="Texture2D" uid="uid://bixkjq6vf2xn8" path="res://addons/igt/topics/common/speech_box_small.png" id="1_mmtvx"]
@@ -6,6 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://mku73gus7myr" path="res://addons/igt/topics/common/godette_small.png" id="1_sf3ic"]
 [ext_resource type="Texture2D" uid="uid://b1tf780gxdb3k" path="res://addons/igt/topics/common/restore.png" id="4_u8o80"]
 [ext_resource type="Texture2D" uid="uid://c551eldhb00cm" path="res://addons/igt/topics/common/hide.png" id="5_2xmbg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssigh"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.588235, 0.588235, 0.588235, 0)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mb10s"]
 content_margin_left = 5.0
@@ -114,6 +125,9 @@ theme_override_constants/separation = 20
 
 [node name="PreviousButton" type="Button" parent="SpeechBox/HBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.169245, 0.169245, 0.169245, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ssigh")
 text = "< Previous"
 
 [node name="NextButton" type="Button" parent="SpeechBox/HBox"]

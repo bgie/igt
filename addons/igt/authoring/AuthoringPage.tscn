@@ -64,7 +64,7 @@ layout_mode = 2
 
 [node name="MacroLabel" type="Label" parent="ColorRect/VBox/HBox/VBoxLeft/HBox"]
 layout_mode = 2
-text = "Record macro (Ctrl+M)"
+text = "Record mouse clicks (Ctrl+M)"
 
 [node name="RecordButton" type="Button" parent="ColorRect/VBox/HBox/VBoxLeft/HBox"]
 layout_mode = 2

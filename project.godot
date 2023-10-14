@@ -14,6 +14,7 @@ config/name="Interactive Godot Tutorial"
 run/main_scene="res://addons/igt/TutorialMain.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/image="res://addons/igt/godette_icon_large.png"
+boot_splash/fullsize=false
 
 [display]
 

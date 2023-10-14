@@ -4,7 +4,7 @@ extends Topic
 func _init():
 	super("Nodes and Scenes", [
 		TutorialStep.new("Introduction", 
-			"Hi!  In this topic we will learn about nodes and scenes.\n\nPress 'next' to continue.",
+			"Hi!  In this topic we will learn about nodes and scenes.\n\nPress 'Next' to continue.",
 			null, _show_2D_editor),
 		TutorialStep.new("What are nodes?", 
 			"Nodes are the building blocks of your game.\n\nThere are nodes for graphics, sound, user interfaces, physics..."),
@@ -20,7 +20,7 @@ func _init():
 		TutorialStep.new("Reusing scenes", 
 			"Scenes can be reused.\n\nScenes do not only refer to backgrounds or game levels,\nbut scenes can be used for enemies, the player, pickups...\nor also user interface elements like dialogs."),
 		TutorialStep.new("Create a scene", 
-			"Lets create a new scene.\n\nSelect 'new scene' from the 'scene' menu.",
+			"Lets create a new scene.\n\nSelect 'New Scene' from the 'Scene' menu.",
 			null, Callable(),
 			"Panel:0/VBoxContainer:0/EditorTitleBar:0/MenuBar:0",
 			_has_user_created_new_scene),
@@ -75,7 +75,11 @@ func _show_2D_editor():
 	EditorInterface.set_main_screen_editor("2D")
 
 func _has_user_created_new_scene() -> bool:
-	return EditorInterface.get_edited_scene_root() == null
+	if EditorInterface.get_edited_scene_root() == null:
+		var select_root_type_button := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/SceneTreeDock:0/VBoxContainer:0/ScrollContainer:0/VBoxContainer:0/VBoxContainer:0/Button:2")
+		if select_root_type_button != null and select_root_type_button.visible:
+			return true
+	return false
 
 func _has_user_select_control_as_root() -> bool:
 	return EditorInterface.get_edited_scene_root() is Control

@@ -17,7 +17,7 @@ signal done_clicked()
 func set_content(text: String, illustration: Texture2D, is_first: bool, is_last: bool):
 	$SpeechBox/Content/RichTextLabel.text = text
 	$SpeechBox/Content/Illustration.texture = illustration
-	$SpeechBox/HBox/PreviousButton.disabled = is_first
+	$SpeechBox/HBox/PreviousButton.visible = not is_first
 	$SpeechBox/HBox/NextButton.visible = !is_last
 	$SpeechBox/HBox/DoneButton.visible = is_last
 

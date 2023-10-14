@@ -15,6 +15,7 @@ var topic : Topic :
 @onready var steps_tree : Tree = $MainMenu/VBox/Tree
 @onready var start_button : Button = $MainMenu/VBox/CenterContainer/StartButton
 @onready var start_hightlight : Control = $MainMenu/VBox/CenterContainer/StartButton/HighlightRect
+@onready var highlight_node_timer = $HighlightNodeTimer
 
 var talking_godette_scene := preload("res://addons/igt/topics/common/TalkingGodette.tscn")
 var talking_godette : Control
@@ -101,7 +102,7 @@ func update_godette_content():
 	talking_godette.set_content(step.description, step.illustration, _step <= 0, _step >= _topic.steps.size()-1)
 	if not step.displayed and step.enter_script.is_valid():
 		step.enter_script.call()
-	editor_spy.highlight_node(step.node_to_highlight)
+	highlight_node_timer.start()
 	if step.check_user_completed_action_script.is_valid() and not step.check_user_completed_action_script.call():
 		_check_user_completed_action_script = step.check_user_completed_action_script
 		talking_godette.set_next_button_enabled(false) 
@@ -126,3 +127,7 @@ func _on_tree_item_activated():
 			_step = index
 			update_godette_content()
 			set_running(true)
+
+func _on_highlight_node_timer_timeout():
+	var step := _topic.steps[_step]
+	editor_spy.highlight_node(step.node_to_highlight)
