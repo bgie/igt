@@ -72,31 +72,35 @@ func _init():
 	])
 
 func _show_2D_editor():
-	EditorInterface.set_main_screen_editor("2D")
+	# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
+	EditorScript.new().get_editor_interface().set_main_screen_editor("2D")
 
 func _has_user_created_new_scene() -> bool:
-	if EditorInterface.get_edited_scene_root() == null:
+	# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
+	if EditorScript.new().get_editor_interface().get_edited_scene_root() == null:
 		var select_root_type_button := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/SceneTreeDock:0/VBoxContainer:0/ScrollContainer:0/VBoxContainer:0/VBoxContainer:0/Button:2")
 		if select_root_type_button != null and select_root_type_button.visible:
 			return true
 	return false
 
 func _has_user_select_control_as_root() -> bool:
-	return EditorInterface.get_edited_scene_root() is Control
+	# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
+	return EditorScript.new().get_editor_interface().get_edited_scene_root() is Control
 
 func _is_add_node_dialog_visible() -> bool:
 	var dialog := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/SceneTreeDock:0/CreateDialog:0")
 	if dialog != null and dialog is Window and dialog.visible:
-		var tween = EditorInterface.get_base_control().create_tween()
+		# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
+		var tween = EditorScript.new().get_editor_interface().get_base_control().create_tween()
 		tween.tween_property(dialog, "position", Vector2i(dialog.position.x, 0), 0.3)
 		return true
 	return false
 
 func _has_added_child_colorRect_node() -> bool:
-	return EditorInterface.get_edited_scene_root().get_children().any(func(node): return node is ColorRect)
+	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(func(node): return node is ColorRect)
 
 func _color_rect_was_made_larger() -> bool:
-	return EditorInterface.get_edited_scene_root().get_children().any(func(node): return node is ColorRect and (node.size.x > 80 and node.size.y > 80))
+	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(func(node): return node is ColorRect and (node.size.x > 80 and node.size.y > 80))
 
 func _color_rect_was_moved() -> bool:
-	return EditorInterface.get_edited_scene_root().get_children().any(func(node): return node is ColorRect and (node.position.x > 100))
+	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(func(node): return node is ColorRect and (node.position.x > 100))

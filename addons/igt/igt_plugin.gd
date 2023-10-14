@@ -7,7 +7,7 @@ var main
 
 func _enter_tree():
 	main = main_scene.instantiate()
-	EditorInterface.get_editor_main_screen().add_child(main)
+	get_editor_interface().get_editor_main_screen().add_child(main)
 	_make_visible(false)
 
 func _exit_tree():

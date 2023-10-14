@@ -15,7 +15,7 @@ func _enter_tree():
 	for node in get_children_recursive(window):
 		if node is Window:
 			node.window_input.connect(on_victim_window_input.bind(node))
-	EditorInterface.get_selection().selection_changed.connect(on_editor_selection_changed)
+	EditorScript.new().get_editor_interface().get_selection().selection_changed.connect(on_editor_selection_changed)
 	print("Igt> Hooked into editor")
 	pointing_hand = pointing_hand_scene.instantiate()
 	pointing_hand.visible = false
@@ -46,10 +46,10 @@ func on_victim_window_input(event: InputEvent, victim: Window):
 
 
 func on_editor_selection_changed():
-	project_selected_nodes_changed.emit(EditorInterface.get_selection().get_selected_nodes())
+	project_selected_nodes_changed.emit(EditorScript.new().get_editor_interface().get_selection().get_selected_nodes())
 
 static func alternative_path_to_node(path: String) -> Node:
-	var node := EditorInterface.get_base_control().get_parent()
+	var node := EditorScript.new().get_editor_interface().get_base_control().get_parent()
 	for path_part in path.split("/", false):
 		var node_parts := path_part.split(":")
 		var node_class := node_parts[0]
