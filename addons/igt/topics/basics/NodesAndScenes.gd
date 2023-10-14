@@ -54,7 +54,8 @@ func _init():
 		TutorialStep.new("Switch to select mode", 
 			"The 2D view also allows you to edit the position and size of nodes.\n\nLets try this!\nFirst, make sure you are in the 'Select' mode.",
 			null, Callable(),
-			"Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/VBoxContainer:0/VSplitContainer:0/VSplitContainer:0/VBoxContainer:0/PanelContainer:0/VBoxContainer:0/CanvasItemEditor:0/HFlowContainer:0/HBoxContainer:0/Button:0"),
+# "Control:0/Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/VBoxContainer:0/VSplitContainer:0/VSplitContainer:0/VBoxContainer:0/PanelContainer:1/VBoxContainer:0/CanvasItemEditor:0/HFlowContainer:0/HBoxContainer:0/Button:0"
+			"Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/VBoxContainer:0/VSplitContainer:0/VSplitContainer:0/VBoxContainer:0/PanelContainer:1/VBoxContainer:0/CanvasItemEditor:0/HFlowContainer:0/HBoxContainer:0/Button:0"),
 		TutorialStep.new("Resize node", 
 			"To resize, simply use the round handles and drag them with the mouse.\n\nMake our ColorRect twice as large.",
 			preload("res://addons/igt/topics/basics/color_rect_handles_resize.png"), Callable(), "",
