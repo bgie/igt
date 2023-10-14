@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://btqfhyxddmka6"]
+
+[ext_resource type="Script" path="res://addons/igt/TutorialMain.gd" id="1_ewf7v"]
+[ext_resource type="Script" path="res://addons/igt/topics/EditorSpy.gd" id="2_wf017"]
+[ext_resource type="Texture2D" uid="uid://mku73gus7myr" path="res://addons/igt/topics/common/godette_small.png" id="3_2bmv8"]
+[ext_resource type="PackedScene" uid="uid://sqt8evuphp7v" path="res://addons/igt/authoring/AuthoringPage.tscn" id="3_bpti5"]
+[ext_resource type="Texture2D" uid="uid://clj5i5h6lxnpl" path="res://addons/igt/home.png" id="4_48ah5"]
+[ext_resource type="PackedScene" uid="uid://yik3uceybpcb" path="res://addons/igt/topics/TutorialPage.tscn" id="5_0qrt5"]
+
+[sub_resource type="FontVariation" id="FontVariation_gnvhx"]
+variation_embolden = 0.5
+
+[node name="TutorialMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ewf7v")
+
+[node name="EditorSpy" type="Node" parent="."]
+script = ExtResource("2_wf017")
+
+[node name="MainMenu" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.75
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.588235, 0.462745, 0.960784)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainMenu"]
+modulate = Color(1, 1, 1, 0.14902)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MainMenu/SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+gui_disable_input = true
+size = Vector2i(576, 628)
+render_target_update_mode = 4
+
+[node name="VBox" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenu/VBox"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_gnvhx")
+theme_override_font_sizes/font_size = 24
+text = "Interactive Godot Tutorials"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="MainMenu/VBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MainMenu/VBox"]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="MainMenu/VBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AuthoringPageButton" type="Button" parent="MainMenu/VBox"]
+layout_mode = 2
+text = "Authoring tool"
+
+[node name="Godette" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -370.0
+offset_right = 309.0
+offset_bottom = 30.0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("3_2bmv8")
+
+[node name="AuthoringPage" parent="." node_paths=PackedStringArray("editor_spy") instance=ExtResource("3_bpti5")]
+visible = false
+layout_mode = 1
+editor_spy = NodePath("../EditorSpy")
+
+[node name="TutorialPage" parent="." node_paths=PackedStringArray("editor_spy") instance=ExtResource("5_0qrt5")]
+visible = false
+layout_mode = 1
+editor_spy = NodePath("../EditorSpy")
+
+[node name="BackButton" type="Button" parent="."]
+visible = false
+custom_minimum_size = Vector2(90, 70)
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 59.0
+offset_bottom = 31.0
+text = "Tutorials"
+icon = ExtResource("4_48ah5")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[connection signal="pressed" from="MainMenu/VBox/AuthoringPageButton" to="." method="_on_authoring_page_button_pressed"]
+[connection signal="done_clicked" from="TutorialPage" to="." method="_on_tutorial_page_done_clicked"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

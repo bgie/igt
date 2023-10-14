@@ -1,0 +1,168 @@
+[gd_scene load_steps=11 format=3 uid="uid://d21jtv5ub5t5e"]
+
+[ext_resource type="Script" path="res://addons/igt/topics/common/TalkingGodette.gd" id="1_a1fab"]
+[ext_resource type="Texture2D" uid="uid://bixkjq6vf2xn8" path="res://addons/igt/topics/common/speech_box_small.png" id="1_mmtvx"]
+[ext_resource type="Theme" uid="uid://n200jbiwtks5" path="res://addons/igt/topics/common/speechboxes_theme.tres" id="1_qstj6"]
+[ext_resource type="Texture2D" uid="uid://mku73gus7myr" path="res://addons/igt/topics/common/godette_small.png" id="1_sf3ic"]
+[ext_resource type="Texture2D" uid="uid://b1tf780gxdb3k" path="res://addons/igt/topics/common/restore.png" id="4_u8o80"]
+[ext_resource type="Texture2D" uid="uid://c551eldhb00cm" path="res://addons/igt/topics/common/hide.png" id="5_2xmbg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mb10s"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.141176, 0.588235, 0.462745, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dj20"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.192157, 0.811765, 0.639216, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_va7sv"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.027451, 0.207843, 0.156863, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ft7r"]
+
+[node name="TalkingGodette" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_qstj6")
+script = ExtResource("1_a1fab")
+
+[node name="SpeechBox" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_top = -320.0
+offset_right = -120.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0, 400)
+texture = ExtResource("1_mmtvx")
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_right = 40
+patch_margin_bottom = 40
+
+[node name="Content" type="HBoxContainer" parent="SpeechBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 250.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Illustration" type="TextureRect" parent="SpeechBox/Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SpeechBox/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "(text here)"
+fit_content = true
+scroll_active = false
+
+[node name="HBox" type="HBoxContainer" parent="SpeechBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+theme_override_constants/separation = 20
+
+[node name="PreviousButton" type="Button" parent="SpeechBox/HBox"]
+layout_mode = 2
+text = "< Previous"
+
+[node name="NextButton" type="Button" parent="SpeechBox/HBox"]
+layout_mode = 2
+text = "Next >"
+
+[node name="DoneButton" type="Button" parent="SpeechBox/HBox"]
+visible = false
+layout_mode = 2
+text = "Done!"
+
+[node name="Godette" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_bottom = 30.0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("1_sf3ic")
+
+[node name="RestoreButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 8.0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_mb10s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6dj20")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_va7sv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ft7r")
+icon = ExtResource("4_u8o80")
+
+[node name="HideButton2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 8.0
+grow_vertical = 0
+icon = ExtResource("5_2xmbg")
+
+[connection signal="pressed" from="SpeechBox/HBox/PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="pressed" from="SpeechBox/HBox/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="SpeechBox/HBox/DoneButton" to="." method="_on_done_button_pressed"]
+[connection signal="pressed" from="RestoreButton" to="." method="_on_restore_button_pressed"]
+[connection signal="pressed" from="HideButton2" to="." method="_on_hide_button_pressed"]

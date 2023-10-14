@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://yik3uceybpcb"]
+
+[ext_resource type="Script" path="res://addons/igt/topics/TutorialPage.gd" id="1_x3fg6"]
+[ext_resource type="PackedScene" uid="uid://bben4vnlgykgv" path="res://addons/igt/topics/common/pointing_hand.tscn" id="2_xtkn8"]
+
+[sub_resource type="FontVariation" id="FontVariation_p6dgw"]
+variation_embolden = 0.5
+
+[node name="TutorialPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x3fg6")
+
+[node name="MainMenu" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.75
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.588235, 0.462745, 0.960784)
+
+[node name="VBox" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenu/VBox"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_p6dgw")
+theme_override_font_sizes/font_size = 24
+text = "[topic title]"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="MainMenu/VBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Tree" type="Tree" parent="MainMenu/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MainMenu/VBox"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MainMenu/VBox/CenterContainer"]
+layout_mode = 2
+text = "Start tutorial"
+
+[node name="HighlightRect" parent="MainMenu/VBox/CenterContainer/StartButton" instance=ExtResource("2_xtkn8")]
+layout_mode = 0
+offset_right = 108.0
+offset_bottom = 31.0
+color = Color(0.141176, 0.588235, 0.462745, 0)
+
+[connection signal="item_activated" from="MainMenu/VBox/Tree" to="." method="_on_tree_item_activated"]
+[connection signal="pressed" from="MainMenu/VBox/CenterContainer/StartButton" to="." method="_on_start_button_pressed"]

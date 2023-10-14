@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgkkmitw72xiy"]
+
+[ext_resource type="Texture2D" uid="uid://cb6yxwmxktfh3" path="res://icon.svg" id="1_nu5n1"]
+[ext_resource type="Script" path="res://addons/igt/FlyingLogo.gd" id="2_d5p14"]
+
+[node name="FlyingLogo" type="Sprite2D"]
+z_index = -44
+position = Vector2(925.22, 77.0301)
+rotation = -16.3312
+scale = Vector2(0.569289, 0.569289)
+texture = ExtResource("1_nu5n1")
+script = ExtResource("2_d5p14")

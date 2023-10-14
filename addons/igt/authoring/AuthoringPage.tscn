@@ -1,0 +1,147 @@
+[gd_scene load_steps=3 format=3 uid="uid://sqt8evuphp7v"]
+
+[ext_resource type="Script" path="res://addons/igt/authoring/AuthoringPage.gd" id="1_swvx4"]
+
+[sub_resource type="FontVariation" id="FontVariation_ytk77"]
+variation_embolden = 0.5
+
+[node name="AuthoringPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_swvx4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_top = 10.0
+offset_right = -110.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.588235, 0.462745, 0.960784)
+
+[node name="VBox" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBox"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_ytk77")
+theme_override_font_sizes/font_size = 24
+text = "Authoring tool"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="ColorRect/VBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="ColorRect/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxLeft" type="VBoxContainer" parent="ColorRect/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBox" type="HBoxContainer" parent="ColorRect/VBox/HBox/VBoxLeft"]
+layout_mode = 2
+
+[node name="MacroLabel" type="Label" parent="ColorRect/VBox/HBox/VBoxLeft/HBox"]
+layout_mode = 2
+text = "Record macro (Ctrl+M)"
+
+[node name="RecordButton" type="Button" parent="ColorRect/VBox/HBox/VBoxLeft/HBox"]
+layout_mode = 2
+text = "Start
+"
+
+[node name="StopButton" type="Button" parent="ColorRect/VBox/HBox/VBoxLeft/HBox"]
+layout_mode = 2
+disabled = true
+text = "Stop"
+
+[node name="ClearButton" type="Button" parent="ColorRect/VBox/HBox/VBoxLeft/HBox"]
+layout_mode = 2
+text = "Clear"
+
+[node name="OutputTextEdit" type="TextEdit" parent="ColorRect/VBox/HBox/VBoxLeft"]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+
+[node name="VBoxRight" type="VBoxContainer" parent="ColorRect/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBox" type="HBoxContainer" parent="ColorRect/VBox/HBox/VBoxRight"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBox/HBox/VBoxRight/HBox"]
+layout_mode = 2
+text = "Editor controls"
+
+[node name="UpdateTreeButton" type="Button" parent="ColorRect/VBox/HBox/VBoxRight/HBox"]
+layout_mode = 2
+text = "Refresh"
+
+[node name="InspectAllButton" type="Button" parent="ColorRect/VBox/HBox/VBoxRight/HBox"]
+layout_mode = 2
+text = "Inspect all"
+
+[node name="Tree" type="Tree" parent="ColorRect/VBox/HBox/VBoxRight"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBox2" type="HBoxContainer" parent="ColorRect/VBox"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ColorRect/VBox/HBox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SelectedTreeItemLabel" type="Label" parent="ColorRect/VBox/HBox2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+autowrap_mode = 2
+
+[node name="CopyPathButton" type="Button" parent="ColorRect/VBox/HBox2"]
+layout_mode = 2
+text = "Copy"
+
+[node name="Node" type="Node" parent="."]
+
+[connection signal="pressed" from="ColorRect/VBox/HBox/VBoxLeft/HBox/RecordButton" to="." method="_on_record_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBox/HBox/VBoxLeft/HBox/StopButton" to="." method="_on_stop_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBox/HBox/VBoxLeft/HBox/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBox/HBox/VBoxRight/HBox/UpdateTreeButton" to="." method="_on_update_tree_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBox/HBox/VBoxRight/HBox/InspectAllButton" to="." method="_on_inspect_all_button_pressed"]
+[connection signal="item_selected" from="ColorRect/VBox/HBox/VBoxRight/Tree" to="." method="_on_tree_item_selected"]
+[connection signal="nothing_selected" from="ColorRect/VBox/HBox/VBoxRight/Tree" to="." method="_on_tree_nothing_selected"]
+[connection signal="pressed" from="ColorRect/VBox/HBox2/CopyPathButton" to="." method="_on_copy_path_button_pressed"]
