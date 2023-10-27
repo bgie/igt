@@ -16,9 +16,9 @@ func _process(delta):
 	
 	if not visible:
 		position = Vector2(randf_range(0, screen_size.x), randf_range(0, screen_size.y))
-		angular_velocity = randf_range(-20, 20)
-		velocity = Vector2(randf_range(-50, 50), randf_range(-50, 50))
-		var scale_val := randf_range(0.4, 1.0)
+		angular_velocity = randf_range(-10, 10)
+		velocity = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+		var scale_val := randf_range(0.1, 0.4)
 		scale = Vector2(scale_val, scale_val)
 		z_index = int(scale_val * 100) - 100
 		visible = true
@@ -26,12 +26,12 @@ func _process(delta):
 	rotation_degrees += angular_velocity * delta
 	position += velocity * delta
 
-	if position.x < -size.x:
-		position.x = screen_size.x + size.x
-	elif position.x > screen_size.x + size.x:
-		position.x = -size.x
+	if position.x < -size.x * scale.x:
+		position.x = screen_size.x + size.x * scale.x
+	elif position.x > screen_size.x + size.x * scale.x:
+		position.x = -size.x * scale.x
 
-	if position.y < -size.y:
-		position.y = screen_size.y + size.y
-	elif position.y > screen_size.y + size.y:
-		position.y = -size.y
+	if position.y < -size.y * scale.y:
+		position.y = screen_size.y + size.y * scale.y
+	elif position.y > screen_size.y + size.y * scale.y:
+		position.y = -size.y * scale.y

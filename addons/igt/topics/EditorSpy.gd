@@ -68,22 +68,22 @@ static func alternative_path_to_node(path: String) -> Node:
 			return null
 	return node
 
-func highlight_node(path: String):
+func highlight_node(path: String, pointing := true):
 	if path.is_empty():
 		clear_pointing_hand()
 		return
 	var node := alternative_path_to_node(path)
 	if node != null and node is Control:
-		point_at_control(node)
+		point_at_control(node, pointing)
 
-func point_at_control(control: Control):
+func point_at_control(control: Control, pointing := true):
 	var parent : Node = control
 	while parent != null:
 		if parent is Window:
 			if pointing_hand.get_parent():
 				pointing_hand.get_parent().remove_child(pointing_hand)
 			parent.add_child(pointing_hand)
-			pointing_hand.set_target(control.get_global_rect())
+			pointing_hand.set_target(control.get_global_rect(), pointing)
 			pointing_hand.visible = true
 			break
 		parent = parent.get_parent()

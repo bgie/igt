@@ -105,7 +105,6 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-text = "(text here)"
 fit_content = true
 scroll_active = false
 

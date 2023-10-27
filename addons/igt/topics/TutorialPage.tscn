@@ -26,7 +26,7 @@ offset_top = 10.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.141176, 0.588235, 0.462745, 0.960784)
+color = Color(0.282353, 0.580392, 1, 0.960784)
 
 [node name="VBox" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 1

@@ -19,6 +19,13 @@ signal done_clicked()
 
 
 func set_content(text: String, illustration: Texture2D, is_first: bool, is_last: bool):
+	var tween = create_tween()
+	if $SpeechBox/Content/RichTextLabel.text != "":
+		tween.tween_property($SpeechBox, "modulate:a", 0, 0.3)
+	tween.tween_callback(set_content_helper.bind(text, illustration, is_first, is_last))
+	tween.tween_property($SpeechBox, "modulate:a", 1.0, 0.3)
+
+func set_content_helper(text: String, illustration: Texture2D, is_first: bool, is_last: bool):
 	$SpeechBox/Content/RichTextLabel.text = text
 	$SpeechBox/Content/Illustration.texture = illustration
 	$SpeechBox/HBox/PreviousButton.visible = not is_first

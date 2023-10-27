@@ -48,8 +48,7 @@ corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_drkgm"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44rf7"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evtmm"]
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
@@ -70,4 +69,4 @@ RichTextLabel/font_sizes/bold_italics_font_size = 32
 RichTextLabel/font_sizes/italics_font_size = 32
 RichTextLabel/font_sizes/mono_font_size = 32
 RichTextLabel/font_sizes/normal_font_size = 32
-RichTextLabel/styles/normal = SubResource("StyleBoxFlat_44rf7")
+RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_evtmm")

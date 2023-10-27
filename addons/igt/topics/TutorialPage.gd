@@ -130,4 +130,4 @@ func _on_tree_item_activated():
 
 func _on_highlight_node_timer_timeout():
 	var step := _topic.steps[_step]
-	editor_spy.highlight_node(step.node_to_highlight)
+	editor_spy.highlight_node(step.node_to_highlight, step.show_pointing_finger)
