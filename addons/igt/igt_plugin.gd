@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const main_scene = preload("res://addons/igt/TutorialMain.tscn")
+const main_scene := preload("res://addons/igt/TutorialMain.tscn")
 
 var main
 

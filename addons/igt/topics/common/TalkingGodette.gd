@@ -7,6 +7,10 @@ signal next_clicked()
 signal previous_clicked()
 signal done_clicked()
 
+@onready var previous_button: Button = $SpeechBox/HBox/PreviousButton
+@onready var next_button: Button = $SpeechBox/HBox/NextButton
+@onready var done_button: Button = $SpeechBox/HBox/DoneButton
+
 @export var collapsed := false :
 	get:
 		return $RestoreButton.visible

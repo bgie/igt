@@ -54,7 +54,7 @@ func set_topic(t : Topic):
 		title_label.text = topic.title
 		
 		var tree_root := steps_tree.create_item()
-		tree_root.set_text(0, "Contents")
+		tree_root.set_text(0, "Inhoud")
 		tree_root.set_metadata(0, 0)
 		var index := 0
 		for step in topic.steps:

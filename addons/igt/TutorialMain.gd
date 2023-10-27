@@ -2,6 +2,10 @@
 extends Control
 class_name IGTMain
 
+@onready var title_label: Label = $MainMenu/VBox/Label
+@onready var authoring_page_button: Button = $MainMenu/VBox/AuthoringPageButton
+@onready var back_button: Button = $BackButton
+
 @export var flying_logos := 20
 @onready var flying_logo_scene := preload("res://addons/igt/flying_logo.tscn")
 @onready var tutorial_buttons_vbox : VBoxContainer = $MainMenu/VBox/VBox

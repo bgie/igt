@@ -128,16 +128,16 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.168627, 0.168627, 0.168627, 1)
 theme_override_colors/font_focus_color = Color(0.169245, 0.169245, 0.169245, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ssigh")
-text = "< Previous"
+text = "< Vorige"
 
 [node name="NextButton" type="Button" parent="SpeechBox/HBox"]
 layout_mode = 2
-text = "Next >"
+text = "Volgende >"
 
 [node name="DoneButton" type="Button" parent="SpeechBox/HBox"]
 visible = false
 layout_mode = 2
-text = "Done!"
+text = "Klaar!"
 
 [node name="Godette" type="TextureRect" parent="."]
 layout_mode = 1
