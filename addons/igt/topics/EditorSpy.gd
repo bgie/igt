@@ -6,7 +6,7 @@ signal editor_control_clicked(control: Control)
 signal project_selected_nodes_changed(nodes: Array[Node])
 
 var pointing_hand_scene := preload("res://addons/igt/topics/common/pointing_hand.tscn")
-var pointing_hand : Control
+var pointing_hand : Control = null
 
 func _enter_tree():
 	var window := get_tree().get_root()
@@ -25,7 +25,8 @@ func _enter_tree():
 
 func _exit_tree():
 	if pointing_hand != null:
-		pointing_hand.get_parent().remove_child(pointing_hand)
+		if pointing_hand.get_parent():
+			pointing_hand.get_parent().remove_child(pointing_hand)
 		pointing_hand.queue_free()
 		print("Igt> Removed hand indicator from editor")
 
