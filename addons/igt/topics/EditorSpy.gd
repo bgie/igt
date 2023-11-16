@@ -93,7 +93,7 @@ func clear_pointing_hand():
 	pointing_hand.visible = false
 
 
-func get_children_recursive(node: Node, include_internal := false) -> Array[Node]:
+static func get_children_recursive(node: Node, include_internal := false) -> Array[Node]:
 	var children := node.get_children(include_internal)
 	var result : Array[Node] = children.duplicate()
 	for child in children:

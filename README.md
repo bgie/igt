@@ -27,3 +27,10 @@ The tutorials will show up as a new button next to 2D, 3D, Scripts, AssetLib.
 ## Support
 This project is a work in progress. 
 Feel free to contact me with questions or suggestions, or if you want to help.
+
+## Credits
+black-kitten8.png by [Gamedev Kitty](https://gamedev-kitty.itch.io/8-cute-sleeping-kittens-sprites)
+FlatNight4BG.png by [MadFireOn](https://swapnilrane24.itch.io/night-background-2)
+fish.png by [xSoKawaiix](https://www.deviantart.com/xsokawaiix/art/Kawaii-Goldfish-159466678)
+cartoon-jump.mp3 from [Pixabay](https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6462")
+eddy.png [the legend](https://www.youtube.com/watch?v=Gvjf5xysJA0)

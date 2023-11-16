@@ -14,7 +14,7 @@ var topic : Topic :
 @onready var title_label : Label = $MainMenu/VBox/Label
 @onready var steps_tree : Tree = $MainMenu/VBox/Tree
 @onready var start_button : Button = $MainMenu/VBox/CenterContainer/StartButton
-@onready var start_hightlight : Control = $MainMenu/VBox/CenterContainer/StartButton/HighlightRect
+@onready var start_highlight : Control = $MainMenu/VBox/CenterContainer/StartButton/HighlightRect
 @onready var highlight_node_timer = $HighlightNodeTimer
 
 var talking_godette_scene := preload("res://addons/igt/topics/common/TalkingGodette.tscn")
@@ -64,7 +64,7 @@ func set_topic(t : Topic):
 			index += 1
 #
 func _ready():
-	start_hightlight.set_target(start_button.get_rect())
+	start_highlight.set_target(start_button.get_rect())
 
 func _on_start_button_pressed():
 	if _step < 0:
@@ -79,9 +79,10 @@ func set_running(v):
 	
 	talking_godette.visible = _running
 	start_button.disabled = _running || _topic == null
-	start_hightlight.visible = !start_button.disabled
+	start_highlight.visible = !start_button.disabled
 	if not _running:
 		_check_user_completed_action_script = Callable()
+		_step = -1
 
 func _on_next_button_clicked():
 	if _step < _topic.steps.size() - 1:
@@ -94,6 +95,7 @@ func _on_previous_button_clicked():
 		update_godette_content()
 
 func _on_done_button_clicked():
+	talking_godette.clear_content()
 	set_running(false)
 	done_clicked.emit()
 

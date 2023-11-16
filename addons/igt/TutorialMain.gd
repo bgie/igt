@@ -19,6 +19,7 @@ var page := Page.MAIN_MENU
 
 var tutorials : Array[Topic] = [
 	preload("res://addons/igt/topics/basics/NodesAndScenes.gd").new(),
+	preload("res://addons/igt/topics/basics/Basic2dNodes.gd").new(),
 	preload("res://addons/igt/topics/basics/ScriptingBasics.gd").new(),
 	preload("res://addons/igt/topics/basics/SoundAndMusic.gd").new()
 ]

@@ -65,18 +65,12 @@ theme = ExtResource("1_qstj6")
 script = ExtResource("1_a1fab")
 
 [node name="SpeechBox" type="NinePatchRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 0
 offset_left = 120.0
-offset_top = -320.0
-offset_right = -120.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(0, 400)
+offset_top = 328.0
+offset_right = 1032.0
+offset_bottom = 628.0
+pivot_offset = Vector2(0, 300)
 texture = ExtResource("1_mmtvx")
 patch_margin_left = 40
 patch_margin_top = 40
@@ -146,6 +140,7 @@ anchor_bottom = 1.0
 offset_left = 50.0
 offset_bottom = 30.0
 grow_vertical = 0
+pivot_offset = Vector2(0, 400)
 mouse_filter = 2
 texture = ExtResource("1_sf3ic")
 
@@ -174,6 +169,7 @@ offset_right = 8.0
 grow_vertical = 0
 icon = ExtResource("5_2xmbg")
 
+[connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="pressed" from="SpeechBox/HBox/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="SpeechBox/HBox/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="SpeechBox/HBox/DoneButton" to="." method="_on_done_button_pressed"]

@@ -7,6 +7,10 @@ signal next_clicked()
 signal previous_clicked()
 signal done_clicked()
 
+@onready var godette: TextureRect = $Godette
+@onready var speech_box: NinePatchRect = $SpeechBox
+@onready var content: HBoxContainer = $SpeechBox/Content
+@onready var rich_text_label: RichTextLabel = $SpeechBox/Content/RichTextLabel
 @onready var previous_button: Button = $SpeechBox/HBox/PreviousButton
 @onready var next_button: Button = $SpeechBox/HBox/NextButton
 @onready var done_button: Button = $SpeechBox/HBox/DoneButton
@@ -24,6 +28,9 @@ func set_content(text: String, illustration: Texture2D, is_first: bool, is_last:
 		tween.tween_property($SpeechBox, "modulate:a", 0, 0.3)
 	tween.tween_callback(set_content_helper.bind(text, illustration, is_first, is_last))
 	tween.tween_property($SpeechBox, "modulate:a", 1.0, 0.3)
+
+func clear_content():
+	set_content_helper("", null, false, false)
 
 func set_content_helper(text: String, illustration: Texture2D, is_first: bool, is_last: bool):
 	$SpeechBox/Content/RichTextLabel.text = text
@@ -70,3 +77,18 @@ func _on_next_button_pressed():
 
 func _on_done_button_pressed():
 	done_clicked.emit()
+
+func _ready() -> void:
+	_on_resized()
+
+func _on_resized() -> void:	
+	var size := get_rect().size
+	var scale_x := size.x / 1920
+	var scale_y := size.y / 1080
+	var scale := min(scale_x, scale_y)
+	godette.scale = Vector2(scale, scale)
+	
+	speech_box.scale = Vector2(scale, scale)
+	speech_box.position = Vector2(120, size.y - 320)
+	speech_box.set_size(Vector2(1920 - 240, 300))
+
