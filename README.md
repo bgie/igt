@@ -6,6 +6,8 @@ It is aimed at children and youth and is used at [CoderDojo Belgium](https://cod
 The tutorials will teach you the basics of the engine and gdscript up to a point where you can start making your own (small) games.
 Godette, the female Godot mascotte, will explain and guide you through the tutorials _inside_ the editor similar to an in-game tutorial often found in games.
 
+Important! Currently the tutorial content is in Dutch (Nederlands). Translations for plugins does not seem to be supported in Godot (yet).
+
 ## Installation
 Download the Godot engine from the [official Godot website](https://godotengine.org/).
 
