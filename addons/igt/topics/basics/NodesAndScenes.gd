@@ -191,32 +191,28 @@ func _init():
 	])
 
 func _show_2D_editor():
-	# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
-	EditorScript.new().get_editor_interface().set_main_screen_editor("2D")
+	EditorInterface.set_main_screen_editor("2D")
 
 func _has_user_created_new_scene() -> bool:
-	# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
-	if EditorScript.new().get_editor_interface().get_edited_scene_root() == null:
+	if EditorInterface.get_edited_scene_root() == null:
 		var select_root_type_button := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/SceneTreeDock:0/VBoxContainer:0/ScrollContainer:0/VBoxContainer:0/VBoxContainer:0/Button:2")
 		if select_root_type_button != null and select_root_type_button.visible:
 			return true
 	return false
 
 func _has_user_select_control_as_root() -> bool:
-	# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
-	return EditorScript.new().get_editor_interface().get_edited_scene_root() is Control
+	return EditorInterface.get_edited_scene_root() is Control
 
 func _is_add_node_dialog_visible() -> bool:
 	var dialog := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/SceneTreeDock:0/CreateDialog:0")
 	if dialog != null and dialog is Window and dialog.visible:
-		# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
-		var tween = EditorScript.new().get_editor_interface().get_base_control().create_tween()
+		var tween = EditorInterface.get_base_control().create_tween()
 		tween.tween_property(dialog, "position", Vector2i(dialog.position.x, 0), 0.3)
 		return true
 	return false
 
 func _has_added_child_colorRect_node() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(find_colorRect_and_set_color)
+	return EditorInterface.get_edited_scene_root().get_children().any(find_colorRect_and_set_color)
 
 func find_colorRect_and_set_color(node) -> bool:
 	if node is ColorRect:
@@ -225,61 +221,60 @@ func find_colorRect_and_set_color(node) -> bool:
 	return false
 
 func _has_added_grandchild_colorRect_node() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(func(node): return node is ColorRect and node.get_children().any(func(grandchild): return grandchild is ColorRect))
+	return EditorInterface.get_edited_scene_root().get_children().any(func(node): return node is ColorRect and node.get_children().any(func(grandchild): return grandchild is ColorRect))
 
 func _color_rect_was_made_larger() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(func(node): return node is ColorRect and (node.size.x > 80 and node.size.y > 80))
+	return EditorInterface.get_edited_scene_root().get_children().any(func(node): return node is ColorRect and (node.size.x > 80 and node.size.y > 80))
 
 func _color_rect_was_moved() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(func(node): return node is ColorRect and (node.position.x > 100))
+	return EditorInterface.get_edited_scene_root().get_children().any(func(node): return node is ColorRect and (node.position.x > 100))
 
 func _color_rect_was_moved_back() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(func(node): return node is ColorRect and (node.position.x < 80))
+	return EditorInterface.get_edited_scene_root().get_children().any(func(node): return node is ColorRect and (node.position.x < 80))
 	
 func _color_rect_was_reparented() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().filter(func(node): return node is ColorRect).size() == 2
+	return EditorInterface.get_edited_scene_root().get_children().filter(func(node): return node is ColorRect).size() == 2
 
 func _color_rect_was_deleted() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().filter(func(node): return node is ColorRect).size() == 1
+	return EditorInterface.get_edited_scene_root().get_children().filter(func(node): return node is ColorRect).size() == 1
 
 func _tree_has_rectangle_face() -> bool:
-	var root := EditorScript.new().get_editor_interface().get_edited_scene_root()
+	var root := EditorInterface.get_edited_scene_root()
 	return root.get_children().size() == 1 and \
 		root.get_children().all(func(node): return node is ColorRect and node.get_children().size() == 3)
 
 func _root_node_was_renamed() -> bool:
-	var root := EditorScript.new().get_editor_interface().get_edited_scene_root()
+	var root := EditorInterface.get_edited_scene_root()
 	return root.name.to_lower() == "blockface"
 
 func _save_scene_dialog_visible() -> bool:
 	var dialog := EditorSpy.alternative_path_to_node("Panel:0/EditorFileDialog:2")
 	if dialog != null and dialog is Window and dialog.visible:
-		# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
-		var tween = EditorScript.new().get_editor_interface().get_base_control().create_tween()
+		var tween = EditorInterface.get_base_control().create_tween()
 		tween.tween_property(dialog, "position", Vector2i(dialog.position.x, 0), 0.3)
 		return true
 	return false
 
 func _scene_saved() -> bool:
-	var file_system := EditorScript.new().get_editor_interface().get_resource_filesystem().get_filesystem()
+	var file_system := EditorInterface.get_resource_filesystem().get_filesystem()
 	for i in file_system.get_file_count():
 		if file_system.get_file(i).get_basename().to_lower() == "block_face":
 			return true
 	return false
 
 func _user_added_scene_as_child() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().filter(func(node): return node.name.to_lower() == "blockface").size() == 1
+	return EditorInterface.get_edited_scene_root().get_children().filter(func(node): return node.name.to_lower() == "blockface").size() == 1
 
 func _subscene_was_moved() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().filter(func(node): return node.position.x > 20).size() == 1
+	return EditorInterface.get_edited_scene_root().get_children().filter(func(node): return node.position.x > 20).size() == 1
 
 func _active_scene_has_switched() -> bool:
-	var root := EditorScript.new().get_editor_interface().get_edited_scene_root()
+	var root := EditorInterface.get_edited_scene_root()
 	return root.name.to_lower() == "blockface"
 
 func _active_scene_has_switched_back() -> bool:
-	var root := EditorScript.new().get_editor_interface().get_edited_scene_root()
+	var root := EditorInterface.get_edited_scene_root()
 	return root.name.to_lower() == "control"
 
 func _user_added_another_scene_as_child() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().filter(func(node): print(node.name); return node.name.to_lower().begins_with("blockface")).size() == 2
+	return EditorInterface.get_edited_scene_root().get_children().filter(func(node): print(node.name); return node.name.to_lower().begins_with("blockface")).size() == 2

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d10pgiv7aradb"
-path="res://.godot/imported/camera_node_child_of_kitten.png-7eed5c13404ab86c7aab50593114e6ae.ctex"
+uid="uid://dsa2yypys7ocl"
+path="res://.godot/imported/pink_elephant.png-c23813fa763d40fcaa881b09dcababb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/igt/topics/basics/camera_node_child_of_kitten.png"
-dest_files=["res://.godot/imported/camera_node_child_of_kitten.png-7eed5c13404ab86c7aab50593114e6ae.ctex"]
+source_file="res://addons/igt/topics/basics/pink_elephant.png"
+dest_files=["res://.godot/imported/pink_elephant.png-c23813fa763d40fcaa881b09dcababb3.ctex"]
 
 [params]
 

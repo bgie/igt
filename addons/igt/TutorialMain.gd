@@ -59,5 +59,4 @@ func _on_topic_button_pressed(topic: Topic):
 
 func _on_tutorial_page_done_clicked():
 	set_page(Page.MAIN_MENU)
-	# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
-	EditorScript.new().get_editor_interface().set_main_screen_editor("Tutorial")
+	EditorInterface.set_main_screen_editor("Tutorial")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d10pgiv7aradb"
-path="res://.godot/imported/camera_node_child_of_kitten.png-7eed5c13404ab86c7aab50593114e6ae.ctex"
+uid="uid://c237t5r2rnkt3"
+path="res://.godot/imported/tab_key.png-955eab844b75259759adee55fb9d16e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/igt/topics/basics/camera_node_child_of_kitten.png"
-dest_files=["res://.godot/imported/camera_node_child_of_kitten.png-7eed5c13404ab86c7aab50593114e6ae.ctex"]
+source_file="res://addons/igt/topics/basics/tab_key.png"
+dest_files=["res://.godot/imported/tab_key.png-955eab844b75259759adee55fb9d16e5.ctex"]
 
 [params]
 

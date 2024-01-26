@@ -50,7 +50,9 @@ func set_collapsed(v : bool):
 	$HideButton2.visible = !v
 	
 	var target_scale : Vector2
-	target_scale = Vector2(0.2, 0.2) if v else Vector2(1.0,1.0)	
+	target_scale = _calculate_fitting_scale()
+	if v:
+		target_scale *= 0.2
 	create_tween().tween_property($SpeechBox, "scale", target_scale, COLLAPSE_ANIMATION_DURATION_SEC)
 	
 	var target_opacity : float
@@ -81,14 +83,20 @@ func _on_done_button_pressed():
 func _ready() -> void:
 	_on_resized()
 
-func _on_resized() -> void:	
+func _calculate_fitting_scale() -> Vector2:
 	var size := get_rect().size
 	var scale_x := size.x / 1920
 	var scale_y := size.y / 1080
 	var scale := min(scale_x, scale_y)
-	godette.scale = Vector2(scale, scale)
-	
-	speech_box.scale = Vector2(scale, scale)
-	speech_box.position = Vector2(120, size.y - 320)
-	speech_box.set_size(Vector2(1920 - 240, 300))
+	return Vector2(scale, scale)
+
+func _on_resized() -> void:
+	var size := get_rect().size
+	var scale := _calculate_fitting_scale()
+	if godette:
+		godette.scale = scale
+	if speech_box:
+		speech_box.scale = scale
+		speech_box.position = Vector2(120, size.y - 320)
+		speech_box.set_size(Vector2(1920 - 240, 300))
 

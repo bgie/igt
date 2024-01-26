@@ -233,20 +233,17 @@ func _init():
 	])
 
 func _show_2D_editor():
-	# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
-	EditorScript.new().get_editor_interface().set_main_screen_editor("2D")
+	EditorInterface.set_main_screen_editor("2D")
 
 func _has_empty_2d_scene() -> bool:
-	# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
-	return EditorScript.new().get_editor_interface().get_edited_scene_root() is Node2D
+	return EditorInterface.get_edited_scene_root() is Node2D
 
 func _has_added_child_sprite2d_node() -> bool:
 	var dialog := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/SceneTreeDock:0/CreateDialog:0")
 	if dialog != null and dialog is Window and dialog.visible:
-		# EditorScript.new().get_editor_interface() is a workaround until 4.2 releases
-		var tween = EditorScript.new().get_editor_interface().get_base_control().create_tween()
+		var tween = EditorInterface.get_base_control().create_tween()
 		tween.tween_property(dialog, "position", Vector2i(dialog.position.x, 0), 0.3)
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().filter(func(node): return node is Sprite2D).size() == 1
+	return EditorInterface.get_edited_scene_root().get_children().filter(func(node): return node is Sprite2D).size() == 1
 
 func _move_resource_panel_split_up():
 	var splitter := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0")
@@ -256,7 +253,7 @@ func _move_resource_panel_split_up():
 func _copy_kitten_resource():
 	_move_resource_panel_split_up()
 	
-	var file_system := EditorScript.new().get_editor_interface().get_resource_filesystem().get_filesystem()
+	var file_system := EditorInterface.get_resource_filesystem().get_filesystem()
 	for i in file_system.get_file_count():
 		print(file_system.get_file(i))
 		if file_system.get_file(i) == "black-kitten8.png":
@@ -265,12 +262,12 @@ func _copy_kitten_resource():
 	var dir := DirAccess.open(file_system.get_path())
 	dir.copy("addons/igt/topics/basics/black-kitten8.png", "black-kitten8.png")
 	print("Copied kitten resource")
-	EditorScript.new().get_editor_interface().get_resource_filesystem().scan()
+	EditorInterface.get_resource_filesystem().scan()
 
 func _copy_background_resource():
 	_move_resource_panel_split_up()
 	
-	var file_system := EditorScript.new().get_editor_interface().get_resource_filesystem().get_filesystem()
+	var file_system := EditorInterface.get_resource_filesystem().get_filesystem()
 	for i in file_system.get_file_count():
 		print(file_system.get_file(i))
 		if file_system.get_file(i) == "FlatNight4BG.png":
@@ -279,49 +276,49 @@ func _copy_background_resource():
 	var dir := DirAccess.open(file_system.get_path())
 	dir.copy("addons/igt/topics/basics/FlatNight4BG.png", "FlatNight4BG.png")
 	print("Copied background resource")
-	EditorScript.new().get_editor_interface().get_resource_filesystem().scan()
+	EditorInterface.get_resource_filesystem().scan()
 
 
 func _sprite_2d_has_texture() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(func(node): return node is Sprite2D and node.texture != null)
+	return EditorInterface.get_edited_scene_root().get_children().any(func(node): return node is Sprite2D and node.texture != null)
 
 func _kitten_node_was_renamed() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten")
+	return EditorInterface.get_edited_scene_root().get_children().any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten")
 
 func _has_added_background_sprite2d_node() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Sprite2D and node.texture != null and node.name.to_lower() == "background")
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Sprite2D and node.texture != null and node.name.to_lower() == "background")
 
 func _has_put_kitten_last() -> bool:
-	var root_children := EditorScript.new().get_editor_interface().get_edited_scene_root().get_children()
+	var root_children := EditorInterface.get_edited_scene_root().get_children()
 	return root_children.size() == 2 and \
 		root_children[0].name.to_lower() == 'background' and \
 		root_children[1].name.to_lower() == 'kitten'
 
 func _unfold_node2d_properties() -> void:
-	for node in EditorScript.new().get_editor_interface().get_edited_scene_root().get_children():
+	for node in EditorInterface.get_edited_scene_root().get_children():
 		if node is Sprite2D:
-			EditorScript.new().get_editor_interface().edit_node(node)
+			EditorInterface.edit_node(node)
 			break
 	var section := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/InspectorDock:0/EditorInspector:0/VBoxContainer:0/EditorInspectorSection:3")
 	section.unfold()
 
 func _has_changed_kitten_skew() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.skew > 0.0)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.skew > 0.0)
 
 func _has_reset_kitten_skew() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.skew == 0.0)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.skew == 0.0)
 
 func _has_changed_kitten_scale() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.scale == Vector2(0.5, 0.5))
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.scale == Vector2(0.5, 0.5))
 
 func _has_changed_kitten_scale_again() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.scale != Vector2(0.5, 0.5))
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.scale != Vector2(0.5, 0.5))
 
 func _has_moved_kitten() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.position.y > 100)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.position.y > 100)
 
 func _has_mirrored_kitten() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.flip_h)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.flip_h)
 
 func _unfold_sprite2d_properties() -> void:
 	var section := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/InspectorDock:0/EditorInspector:0/VBoxContainer:0/EditorInspectorSection:0")
@@ -332,10 +329,10 @@ func _unfold_visibility_properties() -> void:
 	section.unfold()
 	
 func _has_hidden_kitten() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and not node.visible)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and not node.visible)
 
 func _has_shown_kitten_and_modulated() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.visible and node.modulate.g < 0.9)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.visible and node.modulate.g < 0.9)
 
 func _has_user_saved_scene() -> bool:
 	return not EditorScript.new().get_scene().scene_file_path.is_empty()
@@ -345,33 +342,33 @@ func _is_select_main_scene_dialog_open() -> bool:
 		return true # confirmation dialog could be skipped if not first time
 	var dialog := EditorSpy.alternative_path_to_node("Panel:0/ConfirmationDialog:9")
 	if dialog != null and dialog is Window and dialog.visible:
-		var tween = EditorScript.new().get_editor_interface().get_base_control().create_tween()
+		var tween = EditorInterface.get_base_control().create_tween()
 		tween.tween_property(dialog, "position", Vector2i(dialog.position.x, 0), 0.3)
 		return true
 	return false
 
 func _is_game_playing() -> bool:
-	return EditorScript.new().get_editor_interface().is_playing_scene()
+	return EditorInterface.is_playing_scene()
 
 func _has_game_stopped_playing() -> bool:
-	return not EditorScript.new().get_editor_interface().is_playing_scene()
+	return not EditorInterface.is_playing_scene()
 
 func _has_added_camera2d_node() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().filter(func(node): return node is Camera2D).size() == 1
+	return EditorInterface.get_edited_scene_root().get_children().filter(func(node): return node is Camera2D).size() == 1
 
 func _has_moved_camera() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Camera2D and node.position.y > 0)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Camera2D and node.position.y > 0)
 
 func _has_rotated_camera() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Camera2D and not node.ignore_rotation and node.rotation != 0.0)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Camera2D and not node.ignore_rotation and node.rotation != 0.0)
 
 func _has_un_rotated_camera() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Camera2D and node.ignore_rotation and node.rotation == 0.0)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Camera2D and node.ignore_rotation and node.rotation == 0.0)
 
 func _copy_movement_script_resource():
 	_move_resource_panel_split_up()
 	
-	var file_system := EditorScript.new().get_editor_interface().get_resource_filesystem().get_filesystem()
+	var file_system := EditorInterface.get_resource_filesystem().get_filesystem()
 	for i in file_system.get_file_count():
 		print(file_system.get_file(i))
 		if file_system.get_file(i) == "keyboard_movement.gd":
@@ -380,35 +377,35 @@ func _copy_movement_script_resource():
 	var dir := DirAccess.open(file_system.get_path())
 	dir.copy("addons/igt/topics/basics/keyboard_movement.gd", "keyboard_movement.gd")
 	print("Copied movement script")
-	EditorScript.new().get_editor_interface().get_resource_filesystem().scan()
+	EditorInterface.get_resource_filesystem().scan()
 
 func _has_attached_script() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.get_script() != null)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.get_script() != null)
 
 func _camera_child_of_kitten() -> bool:
-	return EditorScript.new().get_editor_interface().get_edited_scene_root().get_children().any(func(node: Node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.get_children().size() == 1 and node.get_children()[0] is Camera2D)
+	return EditorInterface.get_edited_scene_root().get_children().any(func(node: Node): return node is Sprite2D and node.name.to_lower() == "kitten" and node.get_children().size() == 1 and node.get_children()[0] is Camera2D)
 
 func _unfold_camera_drag_properties() -> void:
 	var section := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/InspectorDock:0/EditorInspector:0/VBoxContainer:0/EditorInspectorSection:3")
 	section.unfold()
 
 func _has_changed_camera_zoom() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Camera2D and node.zoom == Vector2(2.0, 2.0))
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Camera2D and node.zoom == Vector2(2.0, 2.0))
 
 func _has_changed_camera_drag() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Camera2D and node.drag_horizontal_enabled and node.drag_vertical_enabled)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Camera2D and node.drag_horizontal_enabled and node.drag_vertical_enabled)
 
 func _unfold_camera_smoothing_properties() -> void:
 	var section := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/InspectorDock:0/EditorInspector:0/VBoxContainer:0/EditorInspectorSection:1")
 	section.unfold()
 
 func _has_changed_camera_smoothing() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Camera2D and node.position_smoothing_enabled and node.position_smoothing_speed < 2.0)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Camera2D and node.position_smoothing_enabled and node.position_smoothing_speed < 2.0)
 
 func _unfold_camera_limit_properties() -> void:
 	var section := EditorSpy.alternative_path_to_node("Panel:0/VBoxContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/HSplitContainer:0/VSplitContainer:0/TabContainer:0/InspectorDock:0/EditorInspector:0/VBoxContainer:0/EditorInspectorSection:0")
 	section.unfold()
 	
 func _has_changed_camera_limit() -> bool:
-	return EditorSpy.get_children_recursive(EditorScript.new().get_editor_interface().get_edited_scene_root()).any(func(node): return node is Camera2D and not node.position_smoothing_enabled and not node.drag_horizontal_enabled and not node.drag_vertical_enabled and node.limit_bottom == 350)
+	return EditorSpy.get_children_recursive(EditorInterface.get_edited_scene_root()).any(func(node): return node is Camera2D and not node.position_smoothing_enabled and not node.drag_horizontal_enabled and not node.drag_vertical_enabled and node.limit_bottom == 350)
 

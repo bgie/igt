@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d10pgiv7aradb"
-path="res://.godot/imported/camera_node_child_of_kitten.png-7eed5c13404ab86c7aab50593114e6ae.ctex"
+uid="uid://cgn84twn33pgx"
+path="res://.godot/imported/scratch_nested_blocks.png-4c7a4597aaf0bfcaa3a06e3cca1ea41b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/igt/topics/basics/camera_node_child_of_kitten.png"
-dest_files=["res://.godot/imported/camera_node_child_of_kitten.png-7eed5c13404ab86c7aab50593114e6ae.ctex"]
+source_file="res://addons/igt/topics/basics/scratch_nested_blocks.png"
+dest_files=["res://.godot/imported/scratch_nested_blocks.png-4c7a4597aaf0bfcaa3a06e3cca1ea41b.ctex"]
 
 [params]
 

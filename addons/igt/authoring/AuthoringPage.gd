@@ -14,7 +14,7 @@ var recording := false
 func _ready():
 	editor_spy.editor_control_clicked.connect(_on_editor_control_clicked)
 	editor_spy.project_selected_nodes_changed.connect(_on_project_selected_nodes_changed)
-	create_tree_items_recursive(EditorScript.new().get_editor_interface().get_base_control())
+	create_tree_items_recursive(EditorInterface.get_base_control())
 
 func _on_record_button_pressed():
 	recording = true
@@ -38,7 +38,7 @@ func _unhandled_key_input(event : InputEvent):
 
 func _on_update_tree_button_pressed():
 	controls_tree.clear()
-	create_tree_items_recursive(EditorScript.new().get_editor_interface().get_base_control())
+	create_tree_items_recursive(EditorInterface.get_base_control())
 
 func create_tree_items_recursive(node: Node, tree_parent: TreeItem = null):
 	var tree_item := controls_tree.create_item(tree_parent)
@@ -64,10 +64,10 @@ func _on_tree_nothing_selected():
 func _on_editor_control_clicked(control: Control):
 	if recording:
 		var output := 'Mouse click on:\n'
-		output += '  ' + str(EditorScript.new().get_editor_interface().get_base_control().get_path_to(control)) + '\n'
+		output += '  ' + str(EditorInterface.get_base_control().get_path_to(control)) + '\n'
 		if control is EditorProperty:
 			output += '    ' + control.get_class() + ': ' + control.get_edited_property() + \
-			' for object: ' + str(EditorScript.new().get_editor_interface().get_edited_scene_root().get_parent().get_path_to(control.get_edited_object())) + '\n'
+			' for object: ' + str(EditorInterface.get_edited_scene_root().get_parent().get_path_to(control.get_edited_object())) + '\n'
 		
 		output += '  Alternative path: ' + editor_spy.get_node_alternative_path(control) + '\n'
 		output_text_edit.text += output + '\n'
@@ -82,7 +82,7 @@ func _on_project_selected_nodes_changed(nodes: Array[Node]):
 	if recording:
 		var node_paths := PackedStringArray()
 		for node in nodes:
-			node_paths.append(str(EditorScript.new().get_editor_interface().get_edited_scene_root().get_parent().get_path_to(node)))
+			node_paths.append(str(EditorInterface.get_edited_scene_root().get_parent().get_path_to(node)))
 		output_text_edit.text += 'Selection changed to:\n  ' + ", ".join(node_paths) + '\n\n'
 
 
