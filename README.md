@@ -12,7 +12,7 @@ Important! Currently the tutorial content is in Dutch (Nederlands). Translations
 Download the Godot engine from the [official Godot website](https://godotengine.org/).
 
 The tutorials addon is closely integrated with the Godot editor, and will probably not work with older versions.
-The addon has been tested to work with Godot 4.1.2
+The addon has been tested to work with Godot 4.2.1
 You do not need .NET support, the tutorials are gdscript only (currently).
 
 Install the godot engine and create a new empty Godot project.
@@ -31,8 +31,9 @@ This project is a work in progress.
 Feel free to contact me with questions or suggestions, or if you want to help.
 
 ## Credits
-black-kitten8.png by [Gamedev Kitty](https://gamedev-kitty.itch.io/8-cute-sleeping-kittens-sprites)
-FlatNight4BG.png by [MadFireOn](https://swapnilrane24.itch.io/night-background-2)
-fish.png by [xSoKawaiix](https://www.deviantart.com/xsokawaiix/art/Kawaii-Goldfish-159466678)
-cartoon-jump.mp3 from [Pixabay](https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6462")
-eddy.png [the legend](https://www.youtube.com/watch?v=Gvjf5xysJA0)
+- black-kitten8.png by [Gamedev Kitty](https://gamedev-kitty.itch.io/8-cute-sleeping-kittens-sprites)
+- FlatNight4BG.png by [MadFireOn](https://swapnilrane24.itch.io/night-background-2)
+- fish.png by [xSoKawaiix](https://www.deviantart.com/xsokawaiix/art/Kawaii-Goldfish-159466678)
+- cartoon-jump.mp3 from [Pixabay](https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6462")
+- eddy.png [the legend](https://www.youtube.com/watch?v=Gvjf5xysJA0)
+- pink_elephant.png by [Brian](http://www.clker.com/clipart-pink-elephant-2.html)
