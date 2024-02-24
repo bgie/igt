@@ -37,3 +37,15 @@ Feel free to contact me with questions or suggestions, or if you want to help.
 - cartoon-jump.mp3 from [Pixabay](https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6462")
 - eddy.png [the legend](https://www.youtube.com/watch?v=Gvjf5xysJA0)
 - pink_elephant.png by [Brian](http://www.clker.com/clipart-pink-elephant-2.html)
+
+## Todo
+- bug on windows where file copy does not work
+- finish scripting basics
+- finish sound basics
+- evaluate first 4 tutorials
+- refactor code: extract library for helper functions, use builder for tutorial steps, extract UI references into common file
+- improvement: introduce possibility to show multiple pointing fingers + optional gestures (eg drag gestures)
+- create tutorial for tileset/tilemap
+- create tutorial for 2D physics
+- create tutorial for player controller basics
+- ...
